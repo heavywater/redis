@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# -*- encoding: utf-8 -*-
+
+Packager.build do
+  centos do
+  end
+  ubuntu do
+    target do
+      platform 'ubuntu'
+      version '12.04'
+      package 'deb'
+      arch 'amd64'
+    end
+    dependencies do
+      runtime ['libc6']
+    end
+    build do
+      name 'hw-redis'
+      template :generic
+      commands do
+        build [
+          'make distclean',
+          'make',
+          'make PREFIX=$PKG_DIR/usr/local install'
+        ]
+      end
+    end
+  end
+end
