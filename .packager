@@ -22,8 +22,9 @@ Packager.build do
           'make distclean',
           'make',
           'make PREFIX=$PKG_DIR/usr/local install',
-          'mkdir $PKG_DIR/var/redis',
-          'mkdir $PKG_DIR/etc/redis',
+          'mkdir $PKG_DIR/var/redis -p',
+          'mkdir $PKG_DIR/etc/redis -p',
+          'mkdir $PKG_DIR/etc/init.d/ -p',
           'cp utils/install_server.sh $PKG_DIR/etc/redis/',
           'cp utils/redis_init_script $PKG_DIR/etc/init.d/redis_6379',
           'cp redis.conf $PKG_DIR/etc/redis/6379.conf'
